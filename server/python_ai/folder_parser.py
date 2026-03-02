@@ -235,7 +235,7 @@ def parse_folder(folder_path):
     Pass 3  — build all nodes and edges.
     Pass 4  — generate description.
     """
-    from parser import generate_description
+    from python_ai.parser import generate_description
 
     folder = Path(folder_path)
 

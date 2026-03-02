@@ -8,8 +8,7 @@ from pathlib import Path
 
 from models.multi_language_parser import parse_file_any_language, parse_folder_multi_language
 from models.multi_language_renderer import (
-    build_mermaid_from_ai,
-    build_description_from_ai,
+    render_ai_diagram,
     has_renderable_content,
 )
 from models.ai_engine import analyze_with_gemini
@@ -80,8 +79,7 @@ def facts_to_response(all_facts: dict) -> DiagramResponse:
     is_cached  = load_from_cache(facts_hash) is not None
 
     ai_result    = analyze_with_gemini(all_facts)
-    mermaid_code = build_mermaid_from_ai(ai_result)
-    description  = build_description_from_ai(ai_result)
+    mermaid_code, description = render_ai_diagram(ai_result)
 
     project_name = ai_result.get("project_name", "Software Project")
     project_type = ai_result.get("project_type", "unknown")

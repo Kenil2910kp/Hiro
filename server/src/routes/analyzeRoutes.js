@@ -1,9 +1,10 @@
 import express from "express";
 import authMiddleware from "../middleware/authMiddleware.js";
-import { analyzeProject } from "../controllers/analyzeController.js";
+import { analyzeGithub, analyzeCode } from "../controllers/analyzeController.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, analyzeProject);
+router.post("/github", authMiddleware, analyzeGithub);
+router.post("/code", authMiddleware, analyzeCode);
 
 export default router;

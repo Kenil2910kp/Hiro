@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, "..", ".env") });
+
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
@@ -21,7 +22,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/analyze", analyzeRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
-.then(()=>console.log("MongoDB Connected"))
-.catch(err=>console.log(err));
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
-app.listen(8000, () => console.log("Server running on 8000"));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Express server running on port ${PORT}`));
